@@ -33,11 +33,31 @@ Dette prosjektet inneholder [Semesteroppgave 2](SEM-2.md). Du kan også [lese op
 
 ## Oversikt
 *(oversikt over koden din og det du har gjort)*
+
+
 ### Bruk
 * For å starte programmet kjør: `fyll.inn.her`
 
 ## Designvalg
 *(hvordan du har valgt å løse oppgaven)*
+
+### Plan
+* 
+
+* GUI: egen implementasjon med Swing eller se på xtra.listeners?
+* Interfaces: 
+	- IBoard (generisk)
+	- IPlayer
+	- IRules (?)
+	- 
+* Klasser:
+	- Board
+	- Player
+	- AI
+	- Rules
+	- 
+
+
 
 ### Bruk av abstraksjon
 *(hvordan du har valgt objekter/klasser for å representere ting i spillet)*
