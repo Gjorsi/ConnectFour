@@ -617,7 +617,7 @@ public class GameGUI extends JPanel implements IUserInterface, ActionListener,
 	public synchronized void update(IPosition pos) {
 		JButton button = positionMap.get(pos);
 		IImage img = selectedGame.getImageAt(pos);
-
+		
 		img.draw(button, animationFrame);
 
 		animations.set(pos, img.isAnimation() ? img : null);
