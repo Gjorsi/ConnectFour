@@ -200,6 +200,11 @@ public class GameGUI extends JPanel implements IUserInterface, ActionListener,
 		JPanel dummyPanel = new JPanel();
 		dummyPanel.setForeground(Style.FOREGROUND);
 		dummyPanel.setBackground(Style.BACKGROUND);
+		
+//		JButton testButton = new JButton();
+//		testButton.setIcon(ImageLoader.getImage("gui/images/red"));
+//		testButton.setPreferredSize(new Dimension(70,70));
+//		dummyPanel.add(testButton);
 
 		add(dummyControlPanel, BorderLayout.NORTH);
 		add(mainPanel, BorderLayout.WEST);

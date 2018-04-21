@@ -6,7 +6,7 @@ import inf101.v18.sem2.gui.IImage;
 import inf101.v18.sem2.gui.Image;
 
 public enum SlotState {
-	RED, YELLOW, EMPTY;
+	RED("redB"), YELLOW("yellowB"), EMPTY("greyB");
 	
 	private IImage image;
 	
@@ -18,7 +18,7 @@ public enum SlotState {
 		return image;
 	}
 	
-	SlotState() {
-		this.image = new Image("gui/images/red");
+	SlotState(String s) {
+		this.image = new Image("gui/images/" + s);
 	}
 }

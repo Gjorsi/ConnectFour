@@ -18,6 +18,7 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 	private MyGrid2D<SlotState> board;
 	private IUserInterface ui;
 	private boolean solo = true;
+	private boolean yellow = true;
 
 	public ConnectFour() {
 		
@@ -30,19 +31,16 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 
 	@Override
 	public List<String> getBoardSizes() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public int getCellHeight() {
-		// TODO Auto-generated method stub
 		return 70;
 	}
 
 	@Override
 	public int getCellWidth() {
-		// TODO Auto-generated method stub
 		return 70;
 	}
 
@@ -53,7 +51,6 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 
 	@Override
 	public IImage getImageAt(IPosition pos) {
-		// TODO Auto-generated method stub
 		return board.get(pos).getImage();
 	}
 
@@ -64,7 +61,6 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return "Connect Four";
 	}
 
@@ -114,19 +110,16 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 
 	@Override
 	public void timeStep(int count) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void clicked(IPosition pos) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void rightClicked(IPosition pos) {
-		// TODO Auto-generated method stub
 		
 	}
 

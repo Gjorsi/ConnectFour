@@ -30,5 +30,4 @@ public class Image implements IImage {
 	public boolean isAnimation() {
 		return false;
 	}
-
 }
