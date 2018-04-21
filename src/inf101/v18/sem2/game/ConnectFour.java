@@ -18,7 +18,8 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 	private MyGrid2D<SlotState> board;
 	private IUserInterface ui;
 	private boolean solo = true;
-	private boolean yellow = true;
+	private SlotState currentPlayer = SlotState.YELLOW;
+	private ConnectFourRules rules = new ConnectFourRules();
 
 	public ConnectFour() {
 		
@@ -115,7 +116,16 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 
 	@Override
 	public void clicked(IPosition pos) {
-		
+		int Y = rules.validMove(board, pos);
+		if (Y >= 0) {
+			board.set(pos.getX(), Y, currentPlayer);
+			
+			if (rules.hasWon(board, pos.getX(), Y)) {
+				System.out.println(currentPlayer.name() + " has won");
+			}
+			
+			currentPlayer = (currentPlayer == SlotState.YELLOW) ? SlotState.RED : SlotState.YELLOW;
+		}
 	}
 
 	@Override
