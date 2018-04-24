@@ -2,11 +2,13 @@ package inf101.v18.sem2.game;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import inf101.v18.sem2.gui.listeners.IClickListener;
 import inf101.v18.sem2.gui.listeners.ITimeStepListener;
 import inf101.v18.sem2.grid.IPosition;
 import inf101.v18.sem2.grid.MyGrid2D;
+import inf101.v18.sem2.grid.Position;
 import inf101.v18.sem2.grid.Rectangle;
 import inf101.v18.sem2.gui.IImage;
 import inf101.v18.sem2.gui.IUserInterface;
@@ -17,9 +19,15 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 	private int height = 6;
 	private MyGrid2D<SlotState> board;
 	private IUserInterface ui;
-	private boolean solo = true;
-	private SlotState currentPlayer = SlotState.YELLOW;
+	private boolean pvp;
+	private boolean playersTurn;
+	private IPlayer currentPlayer;
+	private IPlayer player1;
+	private IPlayer player2;
+	private IRobot robot;
+	private boolean playing;
 	private ConnectFourRules rules = new ConnectFourRules();
+	private Random random = new Random();
 
 	public ConnectFour() {
 		
@@ -76,15 +84,40 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 		for (IPosition pos : board) {
 			board.set(pos, SlotState.EMPTY);
 		}
+		
+		System.out.println("pvp: " + pvp);
+		
+		if (!pvp) {
+			playersTurn = random.nextBoolean();
+			if (playersTurn) {
+				player1 = new Player(SlotState.YELLOW, "Player 1");
+				robot = new Robot(SlotState.RED, "Robot");
+				ui.setStatus("Player starts");
+			} else {
+				player1 = new Player(SlotState.RED, "Player 1");
+				robot = new Robot(SlotState.YELLOW, "Robot");
+				ui.setStatus("AI starts");
+			}
+		} else {
+			player1 = new Player(SlotState.YELLOW, "Player 1");
+			player2 = new Player(SlotState.RED, "Player 2");
+			currentPlayer = player1;
+		}
+		
+		playing = true;
+		
 	}
 
 	@Override
 	public void setMenuChoice(String s) {
 		switch (s) {
 		case "AI":
-			solo = true;
+			pvp = false;
+			break;
 		case "PvP":
-			solo = false;
+			pvp = true;
+			playersTurn = false;
+			break;
 		}
 		ui.newGame();
 	}
@@ -111,21 +144,58 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 
 	@Override
 	public void timeStep(int count) {
-		
+		if (!pvp && !playersTurn) {
+			robot.doTurn(null, this);
+		}
 	}
 
 	@Override
 	public void clicked(IPosition pos) {
-		int Y = rules.validMove(board, pos);
-		if (Y >= 0) {
-			board.set(pos.getX(), Y, currentPlayer);
-			
-			if (rules.hasWon(board, pos.getX(), Y)) {
-				System.out.println(currentPlayer.name() + " has won");
+		
+		if (pvp && playing) {
+			IPosition resultSlot = currentPlayer.doTurn(pos, this);
+			if (resultSlot != null) {
+				placeDisc(resultSlot, currentPlayer);
+				
+				if (rules.hasWon(board, resultSlot.getX(), resultSlot.getY())) {
+					ui.setStatus(currentPlayer.getName() + " won!");
+					playing = false;
+				}
+				
+				currentPlayer = (currentPlayer == player1) ? player2 : player1;
+				
 			}
-			
-			currentPlayer = (currentPlayer == SlotState.YELLOW) ? SlotState.RED : SlotState.YELLOW;
 		}
+		
+//		if (pvp || playersTurn) {
+//			int Y = rules.validMove(board, pos);
+//			if (Y >= 0) {
+//				board.set(pos.getX(), Y, currentColour);
+//				
+//				if (rules.hasWon(board, pos.getX(), Y)) {
+//					System.out.println(currentColour.name() + " has won");
+//				}
+//				
+//				currentColour = (currentColour == SlotState.YELLOW) ? SlotState.RED : SlotState.YELLOW;
+//			}
+//			
+//			if (playersTurn) {
+//				playersTurn = false;
+//				ui.setStatus("AI's turn");
+//			}
+//			
+//		}
+		
+	}
+	
+	@Override
+	public int validMove(IPosition pos) {
+		return rules.validMove(board, pos);
+	}
+	
+	@Override
+	public void placeDisc(IPosition pos, IPlayer player) {
+		board.set(pos, player.getColour());
 	}
 
 	@Override
