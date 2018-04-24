@@ -139,6 +139,16 @@ public interface IGame {
 	 */
 	public int validMove(IPosition pos);
 	
-	
+	/*
+	 * place a disc at given pos
+	 * 
+	 * @param pos
+	 * 		IPosition in grid to place the disc
+	 * @param player
+	 * 		The player who wants to place a disc (use this param to determine which type of disc to place)
+	 */
 	public void placeDisc(IPosition pos, IPlayer player);
+	
+	
+	public boolean isOccupied(IPosition pos);
 }

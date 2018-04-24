@@ -101,9 +101,9 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 		} else {
 			player1 = new Player(SlotState.YELLOW, "Player 1");
 			player2 = new Player(SlotState.RED, "Player 2");
-			currentPlayer = player1;
 		}
 		
+		currentPlayer = player1;
 		playing = true;
 		
 	}
@@ -144,15 +144,24 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 
 	@Override
 	public void timeStep(int count) {
-		if (!pvp && !playersTurn) {
-			robot.doTurn(null, this);
+		
+		if (!pvp && !playersTurn && playing) {
+			IPosition resultSlot = robot.doTurn(null, this);
+			placeDisc(resultSlot, robot);
+			
+			if (rules.hasWon(board, resultSlot.getX(), resultSlot.getY())) {
+				ui.setStatus(robot.getName() + " won!");
+				playing = false;
+			}
+			
+			playersTurn = true;
 		}
 	}
 
 	@Override
 	public void clicked(IPosition pos) {
 		
-		if (pvp && playing) {
+		if ((pvp || playersTurn) && playing) {
 			IPosition resultSlot = currentPlayer.doTurn(pos, this);
 			if (resultSlot != null) {
 				placeDisc(resultSlot, currentPlayer);
@@ -162,8 +171,11 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 					playing = false;
 				}
 				
-				currentPlayer = (currentPlayer == player1) ? player2 : player1;
+				if (pvp)
+					currentPlayer = (currentPlayer == player1) ? player2 : player1;
 				
+				if (!pvp)
+					playersTurn = false;
 			}
 		}
 		
@@ -201,6 +213,11 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 	@Override
 	public void rightClicked(IPosition pos) {
 		
+	}
+
+	@Override
+	public boolean isOccupied(IPosition pos) {
+		return board.get(pos) != SlotState.EMPTY;
 	}
 
 }

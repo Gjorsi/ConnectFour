@@ -1,9 +1,13 @@
 package inf101.v18.sem2.game;
 
+import java.util.Random;
+
 import inf101.v18.sem2.grid.IPosition;
+import inf101.v18.sem2.grid.Position;
 
 public class Robot implements IRobot {
 
+	private Random random = new Random();
 	private SlotState colour;
 	private String name;
 	
@@ -14,21 +18,32 @@ public class Robot implements IRobot {
 
 	@Override
 	public SlotState getColour() {
-		// TODO Auto-generated method stub
-		return null;
+		return colour;
 	}
 
 	@Override
 	public IPosition doTurn(IPosition pos, IGame game) {
 		
+		return randomTurn(game);
 		
-		
-		return null;
 	}
 
 	@Override
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public IPosition randomTurn(IGame game) {
+		Position newPos;
+		int Y;
+		
+		do {
+			newPos = new Position(random.nextInt(game.getWidth()), random.nextInt(game.getHeight()));
+			Y = game.validMove(newPos);
+		} while (Y<0);
+		 
+		return new Position(newPos.getX(), Y);
 	}
 
 }
