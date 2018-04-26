@@ -45,5 +45,4 @@ public class Robot implements IRobot {
 		 
 		return new Position(newPos.getX(), Y);
 	}
-
 }
