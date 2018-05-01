@@ -88,7 +88,7 @@ public class ConnectFourRules {
 	 */
 	public int validMove(MyGrid2D<SlotState> board, IPosition pos) {
 		for (int i=0; i<SLOTS_IN_COLUMN; i++) {
-			if (board.get(pos.getX(), i) == SlotState.EMPTY)
+			if (!board.get(pos.getX(), i).occupied())
 				return i;
 		}
 		

@@ -149,6 +149,5 @@ public interface IGame {
 	 */
 	public void placeDisc(IPosition pos, IPlayer player);
 	
-	
-	public boolean isOccupied(IPosition pos);
+
 }

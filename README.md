@@ -21,46 +21,46 @@ Dette prosjektet inneholder [Semesteroppgave 2](SEM-2.md). Du kan også [lese op
 * Levert av:   *NAVN* (*BRUKERNAVN*)
 * [ ] hele semesteroppgaven er ferdig og klar til retting!
 * Code review:
-   * [ ] jeg har fått tilbakemelding underveis fra @brukernavn, ...
-   * [ ] jeg har gitt tilbakemelding underveis til @brukernavn, ...
+   * [X] jeg har fått tilbakemelding underveis fra @pda008 
+   * [X] jeg har gitt tilbakemelding underveis til @pda008, 
 * Sjekkliste:
-   * [ ] Kjørbart Fire på Rad-spill
+   * [X] Kjørbart Fire på Rad-spill
    * [ ] Forklart designvalg, hvordan koden er organisert, abstraksjon, og andre ting 
    * [ ] Tester
    * [ ] Dokumentasjon (JavaDoc, kommentarer, diagrammer, README, etc.)
-   * [ ] Fornuftige navn på klasser, interfaces, metoder og variabler
-   * [ ] Fornuftige abstraksjoner og innkapsling (bruk av klasser, interface, metoder, etc.)
+   * [X] Fornuftige navn på klasser, interfaces, metoder og variabler
+   * [X] Fornuftige abstraksjoner og innkapsling (bruk av klasser, interface, metoder, etc.)
 
 ## Oversikt
 *(oversikt over koden din og det du har gjort)*
 
 
 ### Bruk
-* For å starte programmet kjør: `fyll.inn.her`
+* For å starte programmet kjør: `Main.java`
+* Spillet starter i "player vs robot" mode, det er tilfeldig om player eller robot starter.
 
 ## Designvalg
-*(hvordan du har valgt å løse oppgaven)*
+Jeg valgte å bruke GUI fra inf101.v18.xtra.listeners. 
 
 ### Plan
-* 
-
-* GUI: egen implementasjon med Swing eller se på xtra.listeners?
+* GUI: ~egen implementasjon med Swing eller se på~ xtra.listeners ~?~
 * Interfaces: 
-	- IBoard (generisk)
+	- ~IBoard (generisk)~ Bruker IGame fra inf101.v18.xtra.listeners
 	- IPlayer
-	- IRules (?)
-	- 
+	- IRobot
+	- ~IRules (?)~ 
+
 * Klasser:
-	- Board
+	- ~Board~ ConnectFour
 	- Player
-	- AI
-	- Rules
-	- 
-
-
+	- Robot
+	- ConnectFourRules
+	- SlotState
 
 ### Bruk av abstraksjon
 *(hvordan du har valgt objekter/klasser for å representere ting i spillet)*
+* ConnectFour.java kontrollerer spillet ved hjelp av en MyGrid2D<SlotState> grid, og behandler alle click. Timestep brukes av AI for å prøve å gjøre et trekk.
+* 
 
 ### Erfaring – hvilke valg viste seg å være gode / dårlige?
 *(designerfaringer – er det noe du ville gjort annerledes?)*

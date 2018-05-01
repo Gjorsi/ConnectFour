@@ -85,8 +85,6 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 			board.set(pos, SlotState.EMPTY);
 		}
 		
-		System.out.println("pvp: " + pvp);
-		
 		if (!pvp) {
 			playersTurn = random.nextBoolean();
 			if (playersTurn) {
@@ -101,6 +99,7 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 		} else {
 			player1 = new Player(SlotState.YELLOW, "Player 1");
 			player2 = new Player(SlotState.RED, "Player 2");
+			ui.setStatus("Player 1 starts");
 		}
 		
 		currentPlayer = player1;
@@ -179,25 +178,6 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 			}
 		}
 		
-//		if (pvp || playersTurn) {
-//			int Y = rules.validMove(board, pos);
-//			if (Y >= 0) {
-//				board.set(pos.getX(), Y, currentColour);
-//				
-//				if (rules.hasWon(board, pos.getX(), Y)) {
-//					System.out.println(currentColour.name() + " has won");
-//				}
-//				
-//				currentColour = (currentColour == SlotState.YELLOW) ? SlotState.RED : SlotState.YELLOW;
-//			}
-//			
-//			if (playersTurn) {
-//				playersTurn = false;
-//				ui.setStatus("AI's turn");
-//			}
-//			
-//		}
-		
 	}
 	
 	@Override
@@ -213,11 +193,6 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 	@Override
 	public void rightClicked(IPosition pos) {
 		
-	}
-
-	@Override
-	public boolean isOccupied(IPosition pos) {
-		return board.get(pos) != SlotState.EMPTY;
 	}
 
 }
