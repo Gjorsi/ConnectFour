@@ -5,6 +5,5 @@ import inf101.v18.sem2.grid.IPosition;
 public interface IRobot extends IPlayer {
 	
 	IPosition randomTurn(IGame game);
-	
-	
+
 }

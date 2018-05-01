@@ -19,13 +19,21 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 	private int height = 6;
 	private MyGrid2D<SlotState> board;
 	private IUserInterface ui;
+	
+	// in pvp or aI mode
 	private boolean pvp;
+	
+	// used in AI mode to control turns
 	private boolean playersTurn;
+	
 	private IPlayer currentPlayer;
 	private IPlayer player1;
 	private IPlayer player2;
 	private IRobot robot;
+	
+	// used to stop the game and wait for restart when someone has won.
 	private boolean playing;
+	
 	private ConnectFourRules rules = new ConnectFourRules();
 	private Random random = new Random();
 
@@ -123,7 +131,7 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 
 	@Override
 	public void setSize(int width, int height) {
-		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -145,6 +153,7 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 	public void timeStep(int count) {
 		
 		if (!pvp && !playersTurn && playing) {
+			// in AI mode, not players turn: call robot to decide its move
 			IPosition resultSlot = robot.doTurn(null, this);
 			placeDisc(resultSlot, robot);
 			
@@ -170,8 +179,10 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 					playing = false;
 				}
 				
-				if (pvp)
+				if (pvp && playing) {
 					currentPlayer = (currentPlayer == player1) ? player2 : player1;
+					ui.setStatus(currentPlayer.getName() + "'s turn");
+				}
 				
 				if (!pvp)
 					playersTurn = false;
