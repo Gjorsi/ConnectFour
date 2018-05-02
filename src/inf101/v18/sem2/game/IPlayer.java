@@ -8,5 +8,5 @@ public interface IPlayer {
 	
 	public String getName();
 	
-	public IPosition doTurn(IPosition pos, IGame game);
+	public IPosition doTurn(IPosition pos, IConnectFour game);
 }

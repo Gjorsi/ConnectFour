@@ -19,7 +19,7 @@ public class Player implements IPlayer {
 	}
 
 	@Override
-	public IPosition doTurn(IPosition pos, IGame game) {
+	public IPosition doTurn(IPosition pos, IConnectFour game) {
 		int Y = game.validMove(pos);
 		if (Y >= 0) {
 			return new Position(pos.getX(), Y);

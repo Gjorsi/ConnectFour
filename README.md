@@ -67,6 +67,7 @@ og brukes til å kalle AI for å utføre trekk når det er dens tur.
 	- IPlayer
 	- IRobot
 	- ~~IRules (?)~~ 
+	- IConnectFour
 
 * Klasser:
 	- ~~Board~~ ConnectFour

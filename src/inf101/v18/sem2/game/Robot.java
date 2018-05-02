@@ -22,7 +22,7 @@ public class Robot implements IRobot {
 	}
 
 	@Override
-	public IPosition doTurn(IPosition pos, IGame game) {
+	public IPosition doTurn(IPosition pos, IConnectFour game) {
 		
 		return randomTurn(game);
 		
@@ -34,7 +34,7 @@ public class Robot implements IRobot {
 	}
 
 	@Override
-	public IPosition randomTurn(IGame game) {
+	public IPosition randomTurn(IConnectFour game) {
 		Position newPos;
 		int Y;
 		

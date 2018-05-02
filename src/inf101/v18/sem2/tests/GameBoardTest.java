@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import java.util.Arrays;
 
 import inf101.v18.sem2.game.ConnectFour;
-import inf101.v18.sem2.game.IGame;
+import inf101.v18.sem2.game.IConnectFour;
 import inf101.v18.sem2.game.IPlayer;
 import inf101.v18.sem2.game.Player;
 import inf101.v18.sem2.game.SlotState;
@@ -19,7 +19,7 @@ public class GameBoardTest {
 
 	@Test
 	void testGrid() {
-		IGame connectFour = new ConnectFour();
+		IConnectFour connectFour = new ConnectFour();
 		new GUIFrame(new GameGUI(Arrays.asList(connectFour)));
 		
 		int height = connectFour.getHeight();
@@ -46,28 +46,38 @@ public class GameBoardTest {
 		
 	}
 	
-	@Test
-	void testPvP() {
-		IGame connectFour = new ConnectFour();
-		IClickListener click = (IClickListener) connectFour;
-		new GUIFrame(new GameGUI(Arrays.asList(connectFour)));
-		int height = connectFour.getHeight();
-		int width = connectFour.getWidth();
-		
-		connectFour.setMenuChoice("pvp");
-		
-		//starting player in pvp is always yellow
-		click.clicked(new Position(0,0));
-		
-	}
-	
 	void testWinCondition() {
-		IGame connectFour = new ConnectFour();
+		IConnectFour connectFour = new ConnectFour();
 		new GUIFrame(new GameGUI(Arrays.asList(connectFour)));
+		IPlayer playerR = new Player(SlotState.RED, "TestPlayerRED");
+		IPlayer playerY = new Player(SlotState.YELLOW, "TestPlayerYELLOW");
 		
 		int height = connectFour.getHeight();
 		int width = connectFour.getWidth();
 		
+		//horizontal win
+		for (int i=0; i<4; i++) {
+			connectFour.placeDisc(new Position(i,0), playerY);
+		}
+		assertTrue(connectFour.hasWon(new Position(0,0)));
+		
+		//vertical win
+		for (int i=1; i<4; i++) {
+			connectFour.placeDisc(new Position(0,i), playerY);
+		}
+		assertTrue(connectFour.hasWon(new Position(0,3)));
+		
+		//diagonal ascending win
+		for (int i=0; i<4; i++) {
+			connectFour.placeDisc(new Position(i,i), playerY);
+		}
+		assertTrue(connectFour.hasWon(new Position(3,3)));
+		
+		//change the central disc to the 3 win conditions to playerR colour and check that it is no longer considered a win
+		connectFour.placeDisc(new Position(0,0), playerR);
+		assertFalse(connectFour.hasWon(new Position(0,3)));
+		assertFalse(connectFour.hasWon(new Position(3,0)));
+		assertFalse(connectFour.hasWon(new Position(3,3)));
 		
 	}
 

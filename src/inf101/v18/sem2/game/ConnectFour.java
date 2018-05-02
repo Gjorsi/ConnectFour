@@ -13,7 +13,7 @@ import inf101.v18.sem2.grid.Rectangle;
 import inf101.v18.sem2.gui.IImage;
 import inf101.v18.sem2.gui.IUserInterface;
 
-public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
+public class ConnectFour implements IConnectFour, IClickListener, ITimeStepListener {
 
 	private int width = 7;
 	private int height = 6;
@@ -157,7 +157,7 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 			IPosition resultSlot = robot.doTurn(null, this);
 			placeDisc(resultSlot, robot);
 			
-			if (rules.hasWon(board, resultSlot.getX(), resultSlot.getY())) {
+			if (hasWon(resultSlot)) {
 				ui.setStatus(robot.getName() + " won!");
 				playing = false;
 			}
@@ -174,7 +174,7 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 			if (resultSlot != null) {
 				placeDisc(resultSlot, currentPlayer);
 				
-				if (rules.hasWon(board, resultSlot.getX(), resultSlot.getY())) {
+				if (hasWon(resultSlot)) {
 					ui.setStatus(currentPlayer.getName() + " won!");
 					playing = false;
 				}
@@ -206,8 +206,14 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 		
 	}
 	
+	@Override
 	public SlotState get(IPosition pos) {
 		return board.get(pos);
+	}
+	
+	@Override
+	public boolean hasWon(IPosition pos) {
+		return rules.hasWon(board, pos.getX(), pos.getY());
 	}
 
 }
