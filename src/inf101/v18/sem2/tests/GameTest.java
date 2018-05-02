@@ -15,7 +15,7 @@ import inf101.v18.sem2.gui.GUIFrame;
 import inf101.v18.sem2.gui.GameGUI;
 import inf101.v18.sem2.gui.listeners.IClickListener;
 
-public class GameBoardTest {
+public class GameTest {
 
 	@Test
 	void testGrid() {
@@ -51,9 +51,6 @@ public class GameBoardTest {
 		new GUIFrame(new GameGUI(Arrays.asList(connectFour)));
 		IPlayer playerR = new Player(SlotState.RED, "TestPlayerRED");
 		IPlayer playerY = new Player(SlotState.YELLOW, "TestPlayerYELLOW");
-		
-		int height = connectFour.getHeight();
-		int width = connectFour.getWidth();
 		
 		//horizontal win
 		for (int i=0; i<4; i++) {

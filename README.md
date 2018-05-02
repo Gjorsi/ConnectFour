@@ -18,25 +18,33 @@ Dette prosjektet inneholder [Semesteroppgave 2](SEM-2.md). Du kan også [lese op
    * Om det er spesielle grunner til at du vil trenge lengre tid, så er det bare å ta kontakt, så kan vi avtale noe. Ta også kontakt om du [trenger annen tilrettelegging](http://www.uib.no/student/49241/trenger-du-tilrettelegging-av-ditt-studiel%C3%B8p). 
    
 # Fyll inn egne svar/beskrivelse/kommentarer til prosjektet under
-* Levert av:   *NAVN* (*BRUKERNAVN*)
-* [ ] hele semesteroppgaven er ferdig og klar til retting!
+* Levert av:   Carl August Gjørsvik (cgj008)
+* [X] hele semesteroppgaven er ferdig og klar til retting!
 * Code review:
    * [X] jeg har fått tilbakemelding underveis fra @pda008 
    * [X] jeg har gitt tilbakemelding underveis til @pda008, 
 * Sjekkliste:
    * [X] Kjørbart Fire på Rad-spill
    * [X] Forklart designvalg, hvordan koden er organisert, abstraksjon, og andre ting 
-   * [ ] Tester
-   * [ ] Dokumentasjon (JavaDoc, kommentarer, diagrammer, README, etc.)
+   * [X] Tester
+   * [X] Dokumentasjon (JavaDoc, kommentarer, diagrammer, README, etc.)
    * [X] Fornuftige navn på klasser, interfaces, metoder og variabler
    * [X] Fornuftige abstraksjoner og innkapsling (bruk av klasser, interface, metoder, etc.)
 
 ## Oversikt
 *(oversikt over koden din og det du har gjort)*
+* ConnectFour implementerer IClickListener, IStepListener og IConnectFour som "extends" IGame.
+* IClickListener, IStepListener og IGame er en del av det jeg har importert fra inf101.v18.xtra.listeners.
 * ConnectFour har i sin tilstand:
 ** Boolean pvp: true hvis spillet er i pvp mode, false hvis player vs AI
 ** Boolean playersTurn: brukes i AI-mode for å hindre spiller i å utføre mer enn 1 trekk per AI-trekk, 
 og brukes til å kalle AI for å utføre trekk når det er dens tur.
+
+* ConnectFour bruker MyGrid2D med typen SlotState. 
+* SlotState representerer brikkene og vises som bilder av typen IImage.
+
+* ConnectFourRules kontrollerer om trekk er gyldige, og om noen har vunnet. Står også for abstraksjon av spillets egenskap som tilsier at en brikke 
+alltid faller til nederste ledige rad.
 
 * AI-mode
 ** Det velges tilfeldig med random.nextBoolean hvem som starter.
@@ -92,6 +100,9 @@ men det ble et bra resultat til slutt.
 
 ## Testing
 *(hvordan du har testet ting)*
+* En klasse (GameTest.java) tester: 
+** Reglene for spillet
+** Win conditions
 
 ## Funksjonalitet, bugs
 *(hva virker / virker ikke)*
@@ -103,6 +114,7 @@ kan ikke rutestørrelsen økes, da bildene som representerer SlotState ikke skal
 *(lærte du noe av å gå gjennom din eller andres kode?)*
 * Petter (@pda008) hadde løst oppgaven på en helt annen måte, med mye arbeid lagt ned i egen GUI. Resultatet hans ble mer "fancy", men det måtte en del kompliserte løsninger til.
 * Det er vanskelig å sette seg inn i andres kode, spesielt når de ikke har mye erfaring med å skrive slik at andre skal kunne bruke det.
+* Vi var begge stort sett ferdige med oppgaven før vi satte oss ned og gikk gjennom hverandres kode, så det var ikke noe som ble endret etter "code review".
 
 ## Annet
 *(er det noe du ville gjort annerledes?)*

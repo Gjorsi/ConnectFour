@@ -36,5 +36,14 @@ public interface IConnectFour extends IGame {
 	 */
 	public SlotState get(IPosition pos);
 	
+	/*
+	 * calls ConnectFourRules.hasWon(), see that class for more info
+	 * 
+	 * @param pos
+	 * 		posittion to base the check on, usually last placed disc
+	 * 
+	 * @return
+	 * 		true if colour at pos has won
+	 */
 	public boolean hasWon(IPosition pos);
 }
