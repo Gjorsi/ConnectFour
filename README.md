@@ -25,7 +25,7 @@ Dette prosjektet inneholder [Semesteroppgave 2](SEM-2.md). Du kan også [lese op
    * [X] jeg har gitt tilbakemelding underveis til @pda008, 
 * Sjekkliste:
    * [X] Kjørbart Fire på Rad-spill
-   * [ ] Forklart designvalg, hvordan koden er organisert, abstraksjon, og andre ting 
+   * [X] Forklart designvalg, hvordan koden er organisert, abstraksjon, og andre ting 
    * [ ] Tester
    * [ ] Dokumentasjon (JavaDoc, kommentarer, diagrammer, README, etc.)
    * [X] Fornuftige navn på klasser, interfaces, metoder og variabler
@@ -78,7 +78,7 @@ og brukes til å kalle AI for å utføre trekk når det er dens tur.
 ### Bruk av abstraksjon
 *(hvordan du har valgt objekter/klasser for å representere ting i spillet)*
 * ConnectFour.java kontrollerer spillet ved hjelp av et MyGrid2D<SlotState> board, og behandler alle click. Timestep brukes av AI for å prøve å gjøre et trekk.
-* Første implementerte jeg ConnectFour uten IPlayer, IRobot, Player, Robot. Deretter gjorde jeg spiller-representasjonen om til 
+* Først implementerte jeg ConnectFour uten IPlayer, IRobot, Player, Robot. Deretter gjorde jeg spiller-representasjonen om til 
 IPlayer interface/Player class og AI-representasjonen til IRobot og Robot. Sånn som spillet fungerer nå er det kanskje unødvendig med IRobot som et ekstra interface,
 men jeg lar det stå. Kan eventuelt legge inn mer avansert AI-funksjonalitet senere. 
 * SlotState representerer "hullene" i spillbrettet. Et "hull" i spillbrettet kan være tomt, ha en gul brikke, eller en rød brikke. 

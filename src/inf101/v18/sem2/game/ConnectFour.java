@@ -205,5 +205,9 @@ public class ConnectFour implements IGame, IClickListener, ITimeStepListener {
 	public void rightClicked(IPosition pos) {
 		
 	}
+	
+	public SlotState get(IPosition pos) {
+		return board.get(pos);
+	}
 
 }
