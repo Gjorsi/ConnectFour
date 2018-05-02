@@ -36,8 +36,8 @@ Dette prosjektet inneholder [Semesteroppgave 2](SEM-2.md). Du kan også [lese op
 * ConnectFour implementerer IClickListener, IStepListener og IConnectFour som "extends" IGame.
 * IClickListener, IStepListener og IGame er en del av det jeg har importert fra inf101.v18.xtra.listeners.
 * ConnectFour har i sin tilstand:
-** Boolean pvp: true hvis spillet er i pvp mode, false hvis player vs AI
-** Boolean playersTurn: brukes i AI-mode for å hindre spiller i å utføre mer enn 1 trekk per AI-trekk, 
+	* Boolean pvp: true hvis spillet er i pvp mode, false hvis player vs AI
+	* Boolean playersTurn: brukes i AI-mode for å hindre spiller i å utføre mer enn 1 trekk per AI-trekk, 
 og brukes til å kalle AI for å utføre trekk når det er dens tur.
 
 * ConnectFour bruker MyGrid2D med typen SlotState. 
@@ -47,17 +47,17 @@ og brukes til å kalle AI for å utføre trekk når det er dens tur.
 alltid faller til nederste ledige rad.
 
 * AI-mode
-** Det velges tilfeldig med random.nextBoolean hvem som starter.
-** ConnectFour.timeStep() kaller AI for å velge sitt trekk når det er dens tur
-** Når brukeren trykker på en rute i spillet kalles currentPlayer.doTurn() med gjeldende posisjon.
-** Alle trekk, både fra player og AI, bruker ConnectFour.validMove() for å sjekke om kolonnen har en ledig posisjon, og få Y-verdien for første ledige.
-** Etter hvert trekk kalles ConnectFourRules.hasWon() for å sjekke om trekket resulterte i at noen vant.
+	* Det velges tilfeldig med random.nextBoolean hvem som starter.
+	* ConnectFour.timeStep() kaller AI for å velge sitt trekk når det er dens tur
+	* Når brukeren trykker på en rute i spillet kalles currentPlayer.doTurn() med gjeldende posisjon.
+	* Alle trekk, både fra player og AI, bruker ConnectFour.validMove() for å sjekke om kolonnen har en ledig posisjon, og få Y-verdien for første ledige.
+	* Etter hvert trekk kalles ConnectFourRules.hasWon() for å sjekke om trekket resulterte i at noen vant.
 
 *pvp-mode
-** Player 1 starter alltid. Brukere kan bytte på hvem som er Player 1 hvis de spiller flere runder.
-** Når en bruker trykker på en rute, utføres et trekk med currentPlayer's brikke dersom det er minst en plass i kolonnen. 
-** currentPlayer skifter for hvert utført trekk.
-** Som i AI-mode brukes ConnectFour.validMove() i trekkene, og ConnectFourRules.hasWon() etter hvert trekk.
+	* Player 1 starter alltid. Brukere kan bytte på hvem som er Player 1 hvis de spiller flere runder.
+	* Når en bruker trykker på en rute, utføres et trekk med currentPlayer's brikke dersom det er minst en plass i kolonnen. 
+	* currentPlayer skifter for hvert utført trekk.
+	* Som i AI-mode brukes ConnectFour.validMove() i trekkene, og ConnectFourRules.hasWon() etter hvert trekk.
 
 ### Bruk
 * For å starte programmet kjør: `Main.java`
@@ -101,8 +101,8 @@ men det ble et bra resultat til slutt.
 ## Testing
 *(hvordan du har testet ting)*
 * En klasse (GameTest.java) tester: 
-** Reglene for spillet
-** Win conditions
+	* Reglene for spillet
+	* Win conditions
 
 ## Funksjonalitet, bugs
 *(hva virker / virker ikke)*
