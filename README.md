@@ -53,7 +53,7 @@ alltid faller til nederste ledige rad.
 	* Alle trekk, både fra player og AI, bruker ConnectFour.validMove() for å sjekke om kolonnen har en ledig posisjon, og få Y-verdien for første ledige.
 	* Etter hvert trekk kalles ConnectFourRules.hasWon() for å sjekke om trekket resulterte i at noen vant.
 
-*pvp-mode
+* pvp-mode
 	* Player 1 starter alltid. Brukere kan bytte på hvem som er Player 1 hvis de spiller flere runder.
 	* Når en bruker trykker på en rute, utføres et trekk med currentPlayer's brikke dersom det er minst en plass i kolonnen. 
 	* currentPlayer skifter for hvert utført trekk.
